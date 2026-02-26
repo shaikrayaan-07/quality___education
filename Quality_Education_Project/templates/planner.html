@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+/* Container */
+.planner-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+/* Titles */
+.planner-container h2 {
+    color: #4e73df;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.planner-container p {
+    color: #555;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Task Input */
+.task-input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.task-input-section input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.task-input-section button {
+    padding: 10px 20px;
+    background: #4e73df;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.task-input-section button:hover {
+    background: #2e59d9;
+}
+
+/* Task List */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.task-item {
+    background: #f9f9f9;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.task-item.completed span {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* Buttons in Task */
+.task-buttons button {
+    margin-left: 8px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.complete-btn {
+    background: #1cc88a;
+}
+
+.delete-btn {
+    background: #e74a3b;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-top: 25px;
+}
+
+.progress-bar-bg {
+    width: 100%;
+    height: 15px;
+    background: #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 5px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #4e73df;
+    transition: 0.3s;
+}
+
+.progress-text {
+    text-align: right;
+    font-weight: bold;
+    color: #555;
+}
+</style>
+
+<div class="planner-container">
+    <h2>🗓️ Daily Planner</h2>
+    <p>Plan your day, track tasks, and boost your productivity!</p>
+
+    <!-- Add Task -->
+    <div class="task-input-section">
+        <input type="text" id="taskInput" placeholder="Enter a new task...">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- Task List -->
+    <ul class="task-list" id="taskList"></ul>
+
+    <!-- Progress -->
+    <div class="progress-container">
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+        <p class="progress-text" id="progressText">0% Completed</p>
+    </div>
+</div>
+
+<script>
+// Add Task
+function addTask() {
+    const input = document.getElementById("taskInput");
+    const taskText = input.value.trim();
+    if(taskText === "") return;
+
+    const li = document.createElement("li");
+    li.className = "task-item";
+
+    li.innerHTML = `
+        <span>${taskText}</span>
+        <div class="task-buttons">
+            <button class="complete-btn" onclick="completeTask(this)">✓</button>
+            <button class="delete-btn" onclick="deleteTask(this)">✕</button>
+        </div>
+    `;
+
+    document.getElementById("taskList").appendChild(li);
+    input.value = "";
+
+    updateProgress();
+}
+
+// Complete Task
+function completeTask(btn) {
+    const taskItem = btn.closest(".task-item");
+    taskItem.classList.toggle("completed");
+    updateProgress();
+}
+
+// Delete Task
+function deleteTask(btn) {
+    const taskItem = btn.closest(".task-item");
+    taskItem.remove();
+    updateProgress();
+}
+
+// Update Progress
+function updateProgress() {
+    const tasks = document.querySelectorAll(".task-item");
+    const completed = document.querySelectorAll(".task-item.completed");
+    const total = tasks.length;
+    const done = completed.length;
+    const percent = total === 0 ? 0 : Math.round((done/total)*100);
+
+    document.getElementById("progressBar").style.width = percent + "%";
+    document.getElementById("progressText").innerText = percent + "% Completed";
+}
+</script>
+
+{% endblock %}

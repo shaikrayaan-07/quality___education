@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+.resources-container {
+    padding: 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.resources-title {
+    margin-bottom: 10px;
+}
+
+.resources-desc {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* Grid Layout */
+.resources-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* Resource Card */
+.resource-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+}
+
+.resource-card h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #4e73df;
+}
+
+.resource-card p {
+    flex: 1;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* Buttons */
+.resource-card a {
+    text-decoration: none;
+    padding: 8px 12px;
+    background: #1cc88a;
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.resource-card a:hover {
+    background: #17a673;
+}
+
+/* Section Header */
+.section-header {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    color: #4e73df;
+    margin-bottom: 5px;
+}
+
+.section-header p {
+    color: #555;
+}
+</style>
+
+<div class="resources-container">
+
+    <h2 class="resources-title">📚 Learning Resources</h2>
+    <p class="resources-desc">
+        Explore carefully selected resources to enhance your skills and knowledge.
+    </p>
+
+    <!-- Video Resources -->
+    <div class="section-header">
+        <h2>🎬 Video Tutorials</h2>
+        <p>Step-by-step video guides to help you learn efficiently.</p>
+    </div>
+
+    <div class="resources-grid">
+        <div class="resource-card">
+            <h3>Python for Beginners</h3>
+            <p>Comprehensive Python course for beginners covering basics to advanced concepts.</p>
+            <a href="https://www.youtube.com/watch?v=_uQrJ0TkZlc" target="_blank">Watch Video</a>
+        </div>
+        <div class="resource-card">
+            <h3>Full Stack Web Development</h3>
+            <p>Learn frontend and backend development using React, Node.js, and MongoDB.</p>
+            <a href="https://www.youtube.com/watch?v=4UZrsTqkcW4" target="_blank">Watch Video</a>
+        </div>
+        <div class="resource-card">
+            <h3>Data Structures & Algorithms</h3>
+            <p>Master DSA concepts with easy-to-follow examples and problem-solving sessions.</p>
+            <a href="https://www.youtube.com/watch?v=8hly31xKli0" target="_blank">Watch Video</a>
+        </div>
+    </div>
+
+    <!-- PDF Resources -->
+    <div class="section-header">
+        <h2>📄 PDFs & eBooks</h2>
+        <p>Download PDFs to read offline and strengthen your understanding.</p>
+    </div>
+
+    <div class="resources-grid">
+        <div class="resource-card">
+            <h3>Python Official Documentation</h3>
+            <p>Official Python guide with syntax, libraries, and examples.</p>
+            <a href="https://docs.python.org/3/tutorial/index.html" target="_blank">View PDF</a>
+        </div>
+        <div class="resource-card">
+            <h3>Introduction to Algorithms</h3>
+            <p>Classic algorithm book covering sorting, searching, and problem-solving techniques.</p>
+            <a href="https://mitpress.mit.edu/books/introduction-algorithms-third-edition" target="_blank">View PDF</a>
+        </div>
+        <div class="resource-card">
+            <h3>HTML & CSS Guide</h3>
+            <p>Comprehensive web design guide covering HTML5 and CSS3 basics.</p>
+            <a href="https://www.w3.org/TR/html52/" target="_blank">View PDF</a>
+        </div>
+    </div>
+
+    <!-- Website Resources -->
+    <div class="section-header">
+        <h2>🌐 Useful Websites</h2>
+        <p>Trusted websites for coding practice, tutorials, and community support.</p>
+    </div>
+
+    <div class="resources-grid">
+        <div class="resource-card">
+            <h3>GeeksforGeeks</h3>
+            <p>Programming tutorials, algorithm explanations, and coding challenges.</p>
+            <a href="https://www.geeksforgeeks.org" target="_blank">Visit Website</a>
+        </div>
+        <div class="resource-card">
+            <h3>LeetCode</h3>
+            <p>Practice coding problems, participate in contests, and improve DSA skills.</p>
+            <a href="https://leetcode.com" target="_blank">Visit Website</a>
+        </div>
+        <div class="resource-card">
+            <h3>Stack Overflow</h3>
+            <p>Ask questions, find answers, and get help from the global developer community.</p>
+            <a href="https://stackoverflow.com" target="_blank">Visit Website</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

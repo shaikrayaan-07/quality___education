@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+.flashcard-page {
+    padding: 30px;
+}
+
+/* Header */
+.page-title {
+    margin-bottom: 10px;
+}
+
+.page-description {
+    margin-bottom: 25px;
+    color: #555;
+}
+
+/* Filter Buttons */
+.filter-buttons {
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #4e73df;
+    color: white;
+    transition: 0.3s;
+}
+
+.filter-btn:hover {
+    background: #2e59d9;
+}
+
+/* Grid */
+.flashcard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* Flashcard */
+.flashcard {
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Front */
+.flashcard-front {
+    background: linear-gradient(135deg, #4e73df, #1cc88a);
+    color: white;
+}
+
+/* Back */
+.flashcard-back {
+    background: white;
+    transform: rotateY(180deg);
+}
+
+.word {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+</style>
+
+<div class="flashcard-page">
+
+    <h2 class="page-title">📚 Language Learning Flashcards</h2>
+    <p class="page-description">
+        Improve your technical vocabulary and strengthen your communication skills.
+        Click on a card to flip and see the definition.
+    </p>
+
+    <!-- Filter Buttons -->
+    <div class="filter-buttons">
+        <button class="filter-btn" onclick="filterCards('all')">All</button>
+        <button class="filter-btn" onclick="filterCards('algorithms')">Algorithms</button>
+        <button class="filter-btn" onclick="filterCards('programming')">Programming</button>
+        <button class="filter-btn" onclick="filterCards('database')">Database</button>
+    </div>
+
+    <div class="flashcard-grid">
+
+        <!-- Algorithm -->
+        <div class="flashcard" data-category="algorithms">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <div class="word">Algorithm</div>
+                    <p>Click to view definition</p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Definition</h4>
+                    <p>A step-by-step procedure to solve a problem.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- API -->
+        <div class="flashcard" data-category="programming">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <div class="word">API</div>
+                    <p>Click to view definition</p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Definition</h4>
+                    <p>Application Programming Interface – allows communication between software systems.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Database -->
+        <div class="flashcard" data-category="database">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <div class="word">Database</div>
+                    <p>Click to view definition</p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Definition</h4>
+                    <p>An organized collection of structured information stored electronically.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compiler -->
+        <div class="flashcard" data-category="programming">
+            <div class="flashcard-inner">
+                <div class="flashcard-front">
+                    <div class="word">Compiler</div>
+                    <p>Click to view definition</p>
+                </div>
+                <div class="flashcard-back">
+                    <h4>Definition</h4>
+                    <p>A program that translates source code into machine language.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+// Flip animation
+document.querySelectorAll(".flashcard").forEach(card => {
+    card.addEventListener("click", () => {
+        card.classList.toggle("flipped");
+    });
+});
+
+// Filter Function
+function filterCards(category) {
+    const cards = document.querySelectorAll(".flashcard");
+
+    cards.forEach(card => {
+        if (category === "all" || card.dataset.category === category) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+</script>
+
+{% endblock %}

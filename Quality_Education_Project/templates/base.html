@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quality Education Platform</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <!-- Font Awesome (icons) -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="education-nav">
+    <div class="nav-brand">
+        <i class="fas fa-graduation-cap"></i>
+        <div class="brand-text">
+            <h1>Quality Education Platform</h1>
+            <p>Empowering Students Through Smart Learning Tools</p>
+        </div>
+    </div>
+
+    <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/resources">Resources</a></li>
+        <li><a href="/quiz">Quiz</a></li>
+        <li><a href="/planner">Planner</a></li>
+        <li><a href="/flashcards">Flashcards</a></li>
+        <li><a href="/skillshare">Skill Share</a></li>
+    </ul>
+</nav>
+
+<!-- Page Content -->
+<div class="education-container">
+    {% block content %}{% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="education-footer">
+    <div class="footer-bottom">
+        © 2026 Quality Education Platform | Built for Students
+    </div>
+</footer>
+
+</body>
+</html>

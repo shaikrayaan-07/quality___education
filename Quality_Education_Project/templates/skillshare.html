@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="skill-share-container">
+
+    <!-- Hero Section -->
+    <div class="skill-hero">
+        <div class="hero-content">
+            <span class="hero-badge">✨ PEER TO PEER LEARNING</span>
+            <h1 class="hero-title">
+                Skill Sharing <span>Platform</span>
+            </h1>
+            <p class="hero-description">
+                Empowering students through peer-to-peer learning and collaborative growth.
+                Share what you know, learn what you don't.
+            </p>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-grid-modern">
+
+        <div class="stat-card-modern">
+            <i class="fas fa-users stat-icon-modern"></i>
+            <div class="stat-number-modern">50+</div>
+            <div class="stat-label-modern">Active Learners</div>
+        </div>
+
+        <div class="stat-card-modern">
+            <i class="fas fa-code stat-icon-modern"></i>
+            <div class="stat-number-modern">20+</div>
+            <div class="stat-label-modern">Skills Available</div>
+        </div>
+
+        <div class="stat-card-modern">
+            <i class="fas fa-chalkboard-teacher stat-icon-modern"></i>
+            <div class="stat-number-modern">15+</div>
+            <div class="stat-label-modern">Expert Teachers</div>
+        </div>
+
+        <div class="stat-card-modern">
+            <i class="fas fa-clock stat-icon-modern"></i>
+            <div class="stat-number-modern">100+</div>
+            <div class="stat-label-modern">Learning Hours</div>
+        </div>
+
+    </div>
+
+    <!-- Skills Section -->
+    <div class="section-header-modern">
+        <h3>Available Skills</h3>
+        <p>Choose from skills taught by fellow students</p>
+    </div>
+
+    <div class="skills-grid-modern">
+
+        <!-- Python -->
+        <div class="skill-card-modern">
+            <div class="skill-emoji-modern">🐍</div>
+            <h4>Python Programming</h4>
+            <p>Advanced Level</p>
+            <button class="join-btn">Join</button>
+        </div>
+
+        <!-- Web Dev -->
+        <div class="skill-card-modern">
+            <div class="skill-emoji-modern">🌐</div>
+            <h4>Web Development</h4>
+            <p>Full Stack</p>
+            <button class="join-btn">Join</button>
+        </div>
+
+        <!-- Math -->
+        <div class="skill-card-modern">
+            <div class="skill-emoji-modern">📐</div>
+            <h4>Mathematics Tutoring</h4>
+            <p>Expert Level</p>
+            <button class="join-btn">Join</button>
+        </div>
+
+        <!-- Public Speaking -->
+        <div class="skill-card-modern">
+            <div class="skill-emoji-modern">🎤</div>
+            <h4>Public Speaking</h4>
+            <p>Intermediate</p>
+            <button class="join-btn">Join</button>
+        </div>
+
+    </div>
+
+    <!-- Share Skill Form -->
+    <div class="form-section-modern">
+
+        <div class="form-content-modern">
+            <h3>Share Your Skill</h3>
+            <p>Become a teacher and help others grow.</p>
+        </div>
+
+        <form class="form-modern">
+
+            <div class="form-group-modern">
+                <label>Your Name</label>
+                <input type="text" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group-modern">
+                <label>Skill You Can Teach</label>
+                <input type="text" placeholder="e.g., Python, Web Dev, Math" required>
+            </div>
+
+            <div class="form-group-modern">
+                <label>Experience Level</label>
+                <select>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Expert</option>
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn-modern">
+                Submit Your Skill
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

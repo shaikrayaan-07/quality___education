@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+.quiz-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.quiz-container h2 {
+    color: #4e73df;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.question {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.options {
+    list-style: none;
+    padding: 0;
+}
+
+.options li {
+    margin-bottom: 10px;
+}
+
+.options button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #1cc88a;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.options button:hover {
+    background: #17a673;
+}
+
+#next-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    background: #4e73df;
+    color: white;
+    border: none;
+    cursor: pointer;
+    float: right;
+}
+
+#next-btn:hover {
+    background: #2e59d9;
+}
+
+#result {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 25px;
+    color: #e74a3b;
+}
+</style>
+
+<div class="quiz-container">
+    <h2>📝 Quick Quiz</h2>
+    <div id="quiz-content">
+        <p class="question" id="question"></p>
+        <ul class="options" id="options"></ul>
+        <button id="next-btn" onclick="nextQuestion()">Next</button>
+    </div>
+    <div id="result"></div>
+</div>
+
+<script>
+const quizData = [
+    {
+        question: "Which of the following is a Python data type?",
+        options: ["String", "Integer", "List", "All of the above"],
+        answer: 3
+    },
+    {
+        question: "What does HTML stand for?",
+        options: ["HyperText Markup Language", "Hyperlink Text Language", "HyperText Markdown Language", "None"],
+        answer: 0
+    },
+    {
+        question: "Which language is primarily used for styling web pages?",
+        options: ["HTML", "CSS", "Python", "Java"],
+        answer: 1
+    },
+    {
+        question: "Which symbol is used for comments in Python?",
+        options: ["//", "#", "/* */", "<!-- -->"],
+        answer: 1
+    },
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+function loadQuestion() {
+    const questionEl = document.getElementById("question");
+    const optionsEl = document.getElementById("options");
+
+    const current = quizData[currentQuestion];
+    questionEl.innerText = current.question;
+    optionsEl.innerHTML = "";
+
+    current.options.forEach((option, index) => {
+        const li = document.createElement("li");
+        const btn = document.createElement("button");
+        btn.innerText = option;
+        btn.onclick = () => selectOption(index);
+        li.appendChild(btn);
+        optionsEl.appendChild(li);
+    });
+}
+
+function selectOption(index) {
+    const correct = quizData[currentQuestion].answer;
+    if (index === correct) {
+        score++;
+    }
+    // Disable all buttons
+    document.querySelectorAll(".options button").forEach(btn => btn.disabled = true);
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < quizData.length) {
+        loadQuestion();
+    } else {
+        document.getElementById("quiz-content").style.display = "none";
+        document.getElementById("result").innerText = `You scored ${score} out of ${quizData.length}! 🎉`;
+    }
+}
+
+// Initial load
+loadQuestion();
+</script>
+
+{% endblock %}
